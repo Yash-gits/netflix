@@ -1,7 +1,6 @@
 TMDB API-KEY: 
 ````
-dcbb962f2e5980149bf0a562c396ff0b :  gaurav-api token
-9cbb1c218810ea9200b06c2fdda3bad0 :shiv
+7dd5f577290de20e9cd25e7eefa5fecb : token api
 squ_db12fcdf874ae5e92ae0d515e3b7d9221a362a3f : sonartoken
 ````
 
