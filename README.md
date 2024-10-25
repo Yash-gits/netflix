@@ -66,10 +66,12 @@ squ_db12fcdf874ae5e92ae0d515e3b7d9221a362a3f : sonartoken
 
 Build and run your application using with your api key:
 ```
-docker build --build-arg TMDB_V3_API_KEY=<your-api-key> -t netflix
-docker run -d --name netflix -p 8081:80 netflix:latest
-
+docker build --build-arg TMDB_V3_API_KEY=<your-api-key> -t netflix .
 ```
+```
+docker run -d --name netflix -p 8081:80 netflix:latest
+```
+`
 
 **Phase 2: Security**
 
