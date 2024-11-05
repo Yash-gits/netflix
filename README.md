@@ -66,7 +66,7 @@ squ_51956cf7c424bcc43ef486ef245e38f26dda6209 : sonartoken 30 days valid
 
 Build and run your application using with your api key:
 ```
-docker build --build-arg TMDB_V3_API_KEY=<your-api-key> -t netflix .
+docker build --build-arg TMDB_V3_API_KEY=7dd5f577290de20e9cd25e7eefa5fecb -t netflix .
 ```
 ```
 docker run -d --name netflix -p 8081:80 netflix:latest
@@ -195,7 +195,7 @@ pipeline {
         }
         stage('Checkout from Git') {
             steps {
-                git branch: 'main', url: 'https://github.com/abhipraydhoble/netflix.git'
+                git branch: 'main', url: 'https://github.com/Yash-gits/netflix.git'
             }
         }
         stage("Sonarqube Analysis") {
@@ -285,7 +285,7 @@ pipeline{
         }
         stage('Checkout from Git'){
             steps{
-                git branch: 'main', url: 'https://github.com/abhipraydhoble/netflix.git'
+                git branch: 'main', url: 'https://github.com/Yash-gits/netflix.git'
             }
         }
         stage("Sonarqube Analysis "){
@@ -299,7 +299,7 @@ pipeline{
         stage("quality gate"){
            steps {
                 script {
-                    waitForQualityGate abortPipeline: false, credentialsId: 'Sonar-token' 
+                    waitForQualityGate abortPipeline: false, credentialsId: 'SonarToken' 
                 }
             } 
         }
@@ -323,9 +323,9 @@ pipeline{
             steps{
                 script{
                    withDockerRegistry(credentialsId: 'docker', toolName: 'docker'){   
-                       sh "docker build --build-arg TMDB_V3_API_KEY=<yourapikey> -t netflix ."
-                       sh "docker tag netflix abhipraydhoble/netflix:latest "
-                       sh "docker push abhipraydhoble/netflix:latest "
+                       sh "docker build --build-arg TMDB_V3_API_KEY=7dd5f577290de20e9cd25e7eefa5fecb -t netflix ."
+                       sh "docker tag netflix Yash-gits/netflix:latest "
+                       sh "docker push Yash-gits/netflix:latest "
                     }
                 }
             }
@@ -337,7 +337,7 @@ pipeline{
         }
         stage('Deploy to container'){
             steps{
-                sh 'docker run -d --name netflix -p 8081:80 abhipraydhoble/netflix:latest'
+                sh 'docker run -d --name netflix -p 8081:80 Yash-gits/netflix:latest'
             }
         }
     }
