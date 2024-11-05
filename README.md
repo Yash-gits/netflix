@@ -22,9 +22,10 @@ squ_51956cf7c424bcc43ef486ef245e38f26dda6209 : sonartoken 30 days valid
 
 
 
-# Deploy Netflix Clone on Cloud using Jenkins - DevSecOps Project!
+# $${\color{Blue} \textbf {Deploy Netflix Clone on Cloud using Jenkins - DevSecOps Project!}}$$
 
-### **Phase 1: Initial Setup and Deployment**
+
+## $${\color {red} \textbf {Phase 1: Initial Setup and Deployment}}$$
 
 **Step 1: Launch EC2 (Ubuntu 22.04):**
 
@@ -37,7 +38,7 @@ squ_51956cf7c424bcc43ef486ef245e38f26dda6209 : sonartoken 30 days valid
 - Clone your application's code repository onto the EC2 instance:
     
     ```bash
-    git clone https
+    git clone https://github.com/abhipraydhoble/netflix/tree/main
     ```
     
 
@@ -49,7 +50,8 @@ squ_51956cf7c424bcc43ef486ef245e38f26dda6209 : sonartoken 30 days valid
     
     sudo apt-get update
     sudo apt-get install docker.io -y
-    sudo usermod -aG docker $USER  # Replace with your system's username, e.g., 'ubuntu'
+    sudo systemctl start docker
+    sudo usermod -aG docker ubuntu
     newgrp docker
     sudo chmod 777 /var/run/docker.sock
     ```
@@ -66,14 +68,14 @@ squ_51956cf7c424bcc43ef486ef245e38f26dda6209 : sonartoken 30 days valid
 
 Build and run your application using with your api key:
 ```
-docker build --build-arg TMDB_V3_API_KEY=7dd5f577290de20e9cd25e7eefa5fecb -t netflix .
-```
+docker build --build-arg TMDB_V3_API_KEY=<your-api-key> -t netflix .
+````
 ```
 docker run -d --name netflix -p 8081:80 netflix:latest
-```
-`
 
-**Phase 2: Security**
+```
+
+## $${\color {red} \textbf {Phase 2: Security}}$$
 
 1. **Install SonarQube and Trivy:**
     - Install SonarQube and Trivy on the EC2 instance to scan for vulnerabilities.
@@ -107,7 +109,7 @@ docker run -d --name netflix -p 8081:80 netflix:latest
     - Integrate SonarQube with your CI/CD pipeline.
     - Configure SonarQube to analyze code for quality and security issues.
 
-**Phase 3: CI/CD Setup**
+## $${\color {red} \textbf {Phase 3: CI/CD Setup}}$$
 
 1. **Install Jenkins for Automation:**
     - Install Jenkins on the EC2 instance to automate deployment:
@@ -209,7 +211,7 @@ pipeline {
         stage("quality gate") {
             steps {
                 script {
-                    waitForQualityGate abortPipeline: false, credentialsId: 'Sonar-token'
+                    waitForQualityGate abortPipeline: false, credentialsId: 'SonarToken'
                 }
             }
         }
@@ -324,20 +326,20 @@ pipeline{
                 script{
                    withDockerRegistry(credentialsId: 'docker', toolName: 'docker'){   
                        sh "docker build --build-arg TMDB_V3_API_KEY=7dd5f577290de20e9cd25e7eefa5fecb -t netflix ."
-                       sh "docker tag netflix Yash-gits/netflix:latest "
-                       sh "docker push Yash-gits/netflix:latest "
+                       sh "docker tag netflix yashshende22/netflix:latest "
+                       sh "docker push yashshende22/netflix:latest "
                     }
                 }
             }
         }
         stage("TRIVY"){
             steps{
-                sh "trivy image abhipraydhoble/netflix:latest > trivyimage.txt" 
+                sh "trivy image yashshende22/netflix:latest > trivyimage.txt" 
             }
         }
         stage('Deploy to container'){
             steps{
-                sh 'docker run -d --name netflix -p 8081:80 Yash-gits/netflix:latest'
+                sh 'docker run -d --name netflix -p 8081:80 yashshende22/netflix:latest'
             }
         }
     }
@@ -353,13 +355,13 @@ sudo systemctl restart jenkins
 
 ```
 
-**Phase 4: Monitoring**
+### $${\color {red} \textbf {Phase 4: Monitoring}}$$
 
 1. **Install Prometheus and Grafana:**
 
    Set up Prometheus and Grafana to monitor your application.
 
-   **Installing Prometheus:**
+   ### $${\color {Magenta} \textbf {Prometheus:}}$$
 
    First, create a dedicated Linux user for Prometheus and download Prometheus:
 
@@ -447,7 +449,7 @@ sudo systemctl restart jenkins
 
    `http://<your-server-ip>:9090`
 
-   **Installing Node Exporter:**
+   #### $${\color{Magenta} \textbf {Installing Node Exporter:}}$$
 
    Create a system user for Node Exporter and download Node Exporter:
 
@@ -551,7 +553,7 @@ sudo systemctl restart jenkins
    `http://<your-prometheus-ip>:9090/targets`
 
 
-####Grafana
+### $${\color {Magenta} \textbf {Grafana}}$$
 
 **Install Grafana on Ubuntu 22.04 and Set it up to Work with Prometheus**
 
@@ -659,6 +661,9 @@ To make it easier to view metrics, you can import a pre-configured dashboard. Fo
 
 You should now have a Grafana dashboard set up to visualize metrics from Prometheus.
 
+![image](https://github.com/user-attachments/assets/24151b74-07f1-45a0-8125-95ab722000d9)
+
+
 Grafana is a powerful tool for creating visualizations and dashboards, and you can further customize it to suit your specific monitoring needs.
 
 That's it! You've successfully installed and set up Grafana to work with Prometheus for monitoring and visualization.
@@ -667,12 +672,12 @@ That's it! You've successfully installed and set up Grafana to work with Prometh
     - Integrate Jenkins with Prometheus to monitor the CI/CD pipeline.
 
 
-**Phase 5: Notification**
+## $${\color {red} \textbf {Phase 5: Notification}}$$
 
 1. **Implement Notification Services:**
     - Set up email notifications in Jenkins or other notification mechanisms.
 
-# Phase 6: Kubernetes
+## $${\color {red} \textbf  {Phase 6: Kubernetes}}$$
 
 ## Create Kubernetes Cluster with Nodegroups
 
@@ -742,7 +747,18 @@ To deploy an application with ArgoCD, you can follow these steps, which I'll out
 4. **Access your Application**
    - To Access the app make sure port 30007 is open in your security group and then open a new tab paste your NodeIP:30007, your app should be running.
 
-**Phase 7: Cleanup**
+## $${\color {red} \textbf {Phase 7: Cleanup}}$$
 
-1. **Cleanup AWS EC2 Instances:**
+**Cleanup AWS EC2 Instances:**
     - Terminate AWS EC2 instances that are no longer needed.
+      
+### Note: Grafana dashboard codes:
+
+- Node Exporter Full: 1860
+- Prometheus 2.0 Stats: 11074
+- Grafana Overview: 10000
+- MySQL Overview: 7362
+- Kubernetes Cluster Monitoring: 6417
+- AWS CloudWatch: 2126
+- Elasticsearch Monitoring: 10011
+- Docker Monitoring: 12239
