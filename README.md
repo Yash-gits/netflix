@@ -1,7 +1,7 @@
 TMDB API-KEY: 
 ````
 7dd5f577290de20e9cd25e7eefa5fecb : token api
-squ_51956cf7c424bcc43ef486ef245e38f26dda6209 : sonartoken 30 days valid
+squ_f1cddf49bdea84d7ee650d8e1e345285a4fb3b19 : sonartoken 30 days valid
 ````
 
 <div align="center">
@@ -38,7 +38,7 @@ squ_51956cf7c424bcc43ef486ef245e38f26dda6209 : sonartoken 30 days valid
 - Clone your application's code repository onto the EC2 instance:
     
     ```bash
-    git clone https://github.com/abhipraydhoble/netflix/tree/main
+    git clone https://github.com/Yash-gits/netflix/tree/main
     ```
     
 
@@ -183,8 +183,8 @@ Create a Jenkins webhook
 pipeline {
     agent any
     tools {
-        jdk 'jdk17'
-        nodejs 'node16'
+        jdk 'JDK(17)'
+        nodejs 'NodeJs(16)'
     }
     environment {
         SCANNER_HOME = tool 'sonar-scanner'
