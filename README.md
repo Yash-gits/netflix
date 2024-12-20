@@ -38,7 +38,7 @@ squ_83da924fc2af00b3f7d6ca7b5e4cf99d6e4b2a3a : sonartoken 30 days valid
 - Clone your application's code repository onto the EC2 instance:
     
     ```bash
-    git clone https://github.com/Yash-gits/netflix/tree/main
+    git clone https://github.com/Yash-gits/netflix/
     ```
     
 
