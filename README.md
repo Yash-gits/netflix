@@ -273,8 +273,8 @@ Now, you have installed the Dependency-Check plugin, configured the tool, and ad
 pipeline{
     agent any
     tools{
-        jdk 'jdk17'
-        nodejs 'node16'
+        jdk 'JDK(17)'
+        nodejs 'NodeJs(16)'
     }
     environment {
         SCANNER_HOME=tool 'sonar-scanner'
