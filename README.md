@@ -1,7 +1,7 @@
 TMDB API-KEY: 
 ````
 7a41d1ad0cf4949f31acf92ecfe44399 : token api
-squ_47834269a8920d6720d74337b8e7c28634e7c40c : sonartoken 30 days valid
+squ_a7644b9dd0c8c2faca53220b8784fd11931f3d06 : sonartoken 30 days valid
 ```` 
 
 <div align="center">
